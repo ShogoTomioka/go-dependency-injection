@@ -1,17 +1,14 @@
 package main
 
-type PersonService struct {
+type UserService struct {
 	config     *Config
-	repository *PersonRepository
+	repository *UserRepository
 }
 
-func (service *PersonService) FindAll() []*Person {
-	if service.config.Enabled {
-		return service.repository.FindAll()
-	}
-	return []*Person{}
+func (service *UserService) FindAll() []*User {
+	return service.repository.FindAll()
 }
 
-func NewPersonService(config *Config, repository *PersonRepository) *PersonService {
-	return &PersonService{config: config, repository: repository}
+func NewUserService(config *Config, repository *UserRepository) *UserService {
+	return &UserService{config: config, repository: repository}
 }

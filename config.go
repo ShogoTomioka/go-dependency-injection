@@ -6,16 +6,25 @@ Config haa three fields,
 "DatabasePath" tells where our database is,
 "Port" tells us port for connect with database.
 */
+
 type Config struct {
-	Enabled      bool
-	DatabasePath string
-	Port         string
+	Host     string
+	Database string
+	DbName   string
+	User     string
+	Password string
+	Port     string
+	Protocol string
 }
 
 func NewConfig() *Config {
 	return &Config{
-		Enabled:      true,
-		DatabasePath: "./example.db",
-		Port:         "8000",
+		Host:     "localhost",
+		Database: "sqlite3",
+		DbName:   "testdb",
+		User:     "root",
+		Password: "",
+		Port:     "3306",
+		Protocol: "tcp",
 	}
 }

@@ -9,9 +9,9 @@ func main() {
 		panic(err)
 	}
 
-	personRepository := NewPersonRepository(db)
+	userRepository := NewUserRepository(db)
 
-	personService := NewPersonService(config, personRepository)
+	personService := NewUserService(config, userRepository)
 
 	server := NewServer(config, personService)
 

@@ -6,14 +6,14 @@ import (
 )
 
 type Server struct {
-	config        *Config
-	personService *PersonService
+	config      *Config
+	userService *UserService
 }
 
 func (s *Server) Handler() http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/people", s.people)
+	mux.HandleFunc("/user", s.users)
 
 	return mux
 }
@@ -27,18 +27,18 @@ func (s *Server) Run() {
 	httpServer.ListenAndServe()
 }
 
-func (s *Server) people(w http.ResponseWriter, r *http.Request) {
-	people := s.personService.FindAll()
-	bytes, _ := json.Marshal(people)
+func (s *Server) users(w http.ResponseWriter, r *http.Request) {
+	users := s.userService.FindAll()
+	bytes, _ := json.Marshal(users)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(bytes)
 }
 
-func NewServer(config *Config, service *PersonService) *Server {
+func NewServer(config *Config, service *UserService) *Server {
 	return &Server{
-		config:        config,
-		personService: service,
+		config:      config,
+		userService: service,
 	}
 }

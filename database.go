@@ -1,7 +1,18 @@
 package main
 
-import "database/sql"
+import (
+	"database/sql"
+	"fmt"
+)
 
-func ConnectDatabase(config *Config) (*sql.DB, error) {
-	return sql.Open("sqlite3", config.DatabasePath)
+func ConnectDatabase(c *Config) (*sql.DB, error) {
+
+	dbConnection := fmt.Sprintf("%s:%s@%s([%s]:%s)/%s%s",
+		c.User,
+		c.Password,
+		c.Protocol,
+		c.Host,
+		c.Port,
+		c.DbName)
+	return sql.Open("sqlite3", dbConnection)
 }
