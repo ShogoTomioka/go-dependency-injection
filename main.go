@@ -11,9 +11,9 @@ func main() {
 
 	userRepository := NewUserRepository(db)
 
-	personService := NewUserService(config, userRepository)
+	personService := NewUserService(userRepository)
 
-	server := NewServer(config, personService)
+	server := NewServer(personService)
 
 	server.Run()
 }

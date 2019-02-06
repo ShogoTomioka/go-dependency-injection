@@ -1,14 +1,17 @@
 package main
 
 type UserService struct {
-	config     *Config
 	repository *UserRepository
+}
+
+func (service *UserService) FindById(uid int) *User {
+	return service.repository.FindById(uid)
 }
 
 func (service *UserService) FindAll() []*User {
 	return service.repository.FindAll()
 }
 
-func NewUserService(config *Config, repository *UserRepository) *UserService {
-	return &UserService{config: config, repository: repository}
+func NewUserService(repository *UserRepository) *UserService {
+	return &UserService{repository: repository}
 }
